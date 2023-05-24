@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {Player} from './Player.tsx'
-
+import { App } from './App.tsx';
 import './style.css'
 
+// QTI: add to use
 import '@citolab/qti-components';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Player server="/" pkg='assets' />
+    <App />
   </React.StrictMode>,
 )
