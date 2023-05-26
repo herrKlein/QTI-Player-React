@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { QtiItem } from "@citolab/qti-components/react/qti-item";
 import { qtiTransform } from "@citolab/qti-components/qti-transform";
 import { ResponseInteraction } from '@citolab/qti-components';
-
 export const Player = ({items}:{items:{ href: string; identifier: string }[]}) => {
   const server = '/';
   const pkg = 'assets';
