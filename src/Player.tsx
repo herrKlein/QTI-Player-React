@@ -50,9 +50,10 @@ export const Player = ({
   };
 
   return (
-    <div className="w-screen h-screen bg-gray-100 rounded-2xl flex flex-col items-center justify-center">
+    <div className="w-screen h-screen px-8 bg-gray-100 rounded-2xl flex flex-col items-center justify-center">
       <QtiItem
-        className="w-[640px] h-[480px] bg-white shadow p-4"
+        scale-to-fit
+        className="w-full h-[480px] bg-white shadow p-4"
         responses={itemId && itemResponses.current.get(itemId)}
         qtiinteractionchanged={({ detail }: { detail: any }) =>
           storeResponse(detail.item, detail.response, detail.responseIdentifier)
@@ -61,11 +62,19 @@ export const Player = ({
         qtiitemconnected={(e: any) => setItemId(e.detail.identifier)}
         xml={itemXML}
       />
-      <div className="flex">
-        <button onClick={() => itemIndex > 0 && setItemIndex(itemIndex - 1)}>
+      <div className="flex justify-between w-full py-2">
+        <button
+          className="bg-blue-200 text-blue-900 rounded px-3 py-2 rounded"
+          onClick={() => itemIndex > 0 && setItemIndex(itemIndex - 1)}
+        >
           vorige
         </button>
-        <button onClick={onNext}>volgende</button>
+        <button
+          className="bg-blue-200 text-blue-900 rounded px-3 py-2 rounded"
+          onClick={onNext}
+        >
+          volgende
+        </button>
       </div>
     </div>
   );
