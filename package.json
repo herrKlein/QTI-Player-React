@@ -8,16 +8,13 @@
     ".": "./dist/my-element.es.js"
   },
   "types": "types/my-element.d.ts",
-  "files": [
-    "dist",
-    "types"
-  ],
+  "files": ["dist", "types"],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@citolab/qti-components": "next",
+    "@citolab/qti-components": "^next",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
