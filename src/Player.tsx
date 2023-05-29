@@ -64,10 +64,10 @@ export const Player = ({
       />
       <div className="flex justify-between items-center w-full py-2">
         <button
-          className="bg-blue-200 text-blue-900 rounded px-3 py-2 rounded"
+          className="bg-blue-500 text-white rounded px-3 pb-1 rounded text-3xl py-0"
           onClick={() => itemIndex > 0 && setItemIndex(itemIndex - 1)}
         >
-          vorige
+          ‹
         </button>
         <div className="flex-1 mx-4 relative">
           <input
@@ -84,10 +84,10 @@ export const Player = ({
           </div>
         </div>
         <button
-          className="bg-blue-200 text-blue-900 rounded px-3 py-2 rounded"
+          className="bg-blue-500 text-white rounded px-3 pb-1 rounded text-3xl py-0"
           onClick={onNext}
         >
-          volgende
+          ›
         </button>
       </div>
     </div>
