@@ -62,13 +62,27 @@ export const Player = ({
         qtiitemconnected={(e: any) => setItemId(e.detail.identifier)}
         xml={itemXML}
       />
-      <div className="flex justify-between w-full py-2">
+      <div className="flex justify-between items-center w-full py-2">
         <button
           className="bg-blue-200 text-blue-900 rounded px-3 py-2 rounded"
           onClick={() => itemIndex > 0 && setItemIndex(itemIndex - 1)}
         >
           vorige
         </button>
+        <div className="flex-1 mx-4 relative">
+          <input
+            type="range"
+            value={itemIndex}
+            className="appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-full absolute w-full"
+            max={items.length - 1}
+            onInput={(e) => setItemIndex(+(e.target as HTMLInputElement).value)}
+          />
+          <div className="flex justify-between">
+            {items.map((_) => (
+              <div className="w-4 h-4 rounded-full border-2 border-blue-400"></div>
+            ))}
+          </div>
+        </div>
         <button
           className="bg-blue-200 text-blue-900 rounded px-3 py-2 rounded"
           onClick={onNext}
