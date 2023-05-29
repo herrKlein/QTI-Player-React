@@ -13,6 +13,8 @@ export const Player = ({
   const [itemXML, setItemXML] = useState<string>(''); // the xml of the current item
   const [itemId, setItemId] = useState<string | undefined>(undefined); // the identifier set by the connected, triggers setting the response
   const itemResponses = useRef(new Map<string, ResponseInteraction[]>([]));
+  const itemOutcomes = useRef(new Map<string, number>([]));
+  const qtiItem = useRef();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -46,22 +48,38 @@ export const Player = ({
       ]);
   };
   const onNext = () => {
+    (qtiItem.current! as typeof QtiItem).processResponse();
     itemIndex < items.length - 1 && setItemIndex(itemIndex + 1);
   };
 
   return (
     <div className="w-screen h-screen px-8 bg-gray-100 rounded-2xl flex flex-col items-center justify-center">
-      <QtiItem
-        scale-to-fit
-        className="w-full h-[480px] bg-white shadow p-4"
-        responses={itemId && itemResponses.current.get(itemId)}
-        qtiinteractionchanged={({ detail }: { detail: any }) =>
-          storeResponse(detail.item, detail.response, detail.responseIdentifier)
-        }
-        qtioutcomechanged={(e: any) => console.log(e)}
-        qtiitemconnected={(e: any) => setItemId(e.detail.identifier)}
-        xml={itemXML}
-      />
+      <div>
+        <h1>{itemId}</h1>
+        <QtiItem
+          scale-to-fit
+          className="w-full h-[480px] bg-white shadow p-4"
+          responses={itemId && itemResponses.current.get(itemId)}
+          qtiinteractionchanged={({ detail }: { detail: any }) =>
+            storeResponse(
+              detail.item,
+              detail.response,
+              detail.responseIdentifier
+            )
+          }
+          qtioutcomechanged={(e: any) => {
+            itemOutcomes.current.set(
+              items[itemIndex].identifier,
+              e.detail.value
+            );
+          }}
+          qtiitemconnected={(e: any) => {
+            qtiItem.current = e.target;
+            setItemId(e.detail.identifier);
+          }}
+          xml={itemXML}
+        />
+      </div>
       <div className="flex justify-between items-center w-full py-2">
         <button
           className="bg-blue-500 text-white rounded px-3 pb-1 rounded text-3xl py-0"
@@ -73,13 +91,15 @@ export const Player = ({
           <input
             type="range"
             value={itemIndex}
-            className="appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-full absolute w-full"
+            className="appearance-none bg-transparent  absolute w-full"
             max={items.length - 1}
             onInput={(e) => setItemIndex(+(e.target as HTMLInputElement).value)}
           />
           <div className="flex justify-between">
-            {items.map((_) => (
-              <div className="w-4 h-4 rounded-full border-2 border-blue-400"></div>
+            {items.map((_, i) => (
+              <div className="w-4 h-4 rounded-full border-2 border-blue-400">
+                {itemOutcomes.current.get(items[i].identifier)}
+              </div>
             ))}
           </div>
         </div>
