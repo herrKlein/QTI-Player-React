@@ -96,8 +96,11 @@ export const Player = ({
             onInput={(e) => setItemIndex(+(e.target as HTMLInputElement).value)}
           />
           <div className="flex justify-between">
-            {items.map((_, i) => (
-              <div className="w-4 h-4 rounded-full border-2 border-blue-400">
+            {items.map((item, i) => (
+              <div
+                key={item.identifier}
+                className="w-4 h-4 rounded-full border-2 border-blue-400"
+              >
                 {itemOutcomes.current.get(items[i].identifier)}
               </div>
             ))}
