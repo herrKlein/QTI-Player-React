@@ -14,7 +14,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@citolab/qti-components": "^next",
+    "@citolab/qti-components": "next",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
