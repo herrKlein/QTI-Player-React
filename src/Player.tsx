@@ -54,32 +54,23 @@ export const Player = ({
 
   return (
     <div className="w-screen h-screen px-8 bg-gray-100 rounded-2xl flex flex-col items-center justify-center">
-      <div>
-        <h1>{itemId}</h1>
-        <QtiItem
-          scale-to-fit
-          className="w-full h-[480px] bg-white shadow p-4"
-          responses={itemId && itemResponses.current.get(itemId)}
-          qtiinteractionchanged={({ detail }: { detail: any }) =>
-            storeResponse(
-              detail.item,
-              detail.response,
-              detail.responseIdentifier
-            )
-          }
-          qtioutcomechanged={(e: any) => {
-            itemOutcomes.current.set(
-              items[itemIndex].identifier,
-              e.detail.value
-            );
-          }}
-          qtiitemconnected={(e: any) => {
-            qtiItem.current = e.target;
-            setItemId(e.detail.identifier);
-          }}
-          xml={itemXML}
-        />
-      </div>
+      <QtiItem
+        in-shadow-root
+        className="w-full h-[480px] bg-white shadow p-4"
+        responses={itemId && itemResponses.current.get(itemId)}
+        qtiinteractionchanged={({ detail }: { detail: any }) =>
+          storeResponse(detail.item, detail.response, detail.responseIdentifier)
+        }
+        qtioutcomechanged={(e: any) => {
+          itemOutcomes.current.set(items[itemIndex].identifier, e.detail.value);
+        }}
+        qtiitemconnected={(e: any) => {
+          qtiItem.current = e.target;
+          setItemId(e.detail.identifier);
+        }}
+        dangerouslySetInnerHTML={{ __html: itemXML }}
+      />
+
       <div className="flex justify-between items-center w-full py-2">
         <button
           className="bg-blue-500 text-white rounded px-3 pb-1 rounded text-3xl py-0"
@@ -113,6 +104,7 @@ export const Player = ({
           ›
         </button>
       </div>
+      <h1>{itemId}</h1>
     </div>
   );
 };
