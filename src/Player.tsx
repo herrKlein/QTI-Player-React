@@ -55,7 +55,6 @@ export const Player = ({
   return (
     <div className="w-screen h-screen px-8 bg-gray-100 rounded-2xl flex flex-col items-center justify-center">
       <QtiItem
-        in-shadow-root
         className="w-full h-[480px] bg-white shadow p-4"
         responses={itemId && itemResponses.current.get(itemId)}
         qtiinteractionchanged={({ detail }: { detail: any }) =>
@@ -68,7 +67,7 @@ export const Player = ({
           qtiItem.current = e.target;
           setItemId(e.detail.identifier);
         }}
-        dangerouslySetInnerHTML={{ __html: itemXML }}
+        xml={itemXML}
       />
 
       <div className="flex justify-between items-center w-full py-2">
