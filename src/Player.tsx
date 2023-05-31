@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { QtiItem } from '@citolab/qti-components/react/qti-item';
 import { qtiTransform } from '@citolab/qti-components/qti-transform';
-import { ResponseInteraction } from '@citolab/qti-components';
+import { type ResponseInteraction } from '@citolab/qti-components';
+
 export const Player = ({
   items,
 }: {
@@ -14,9 +15,10 @@ export const Player = ({
   const [itemId, setItemId] = useState<string | undefined>(undefined); // the identifier set by the connected, triggers setting the response
   const itemResponses = useRef(new Map<string, ResponseInteraction[]>([]));
   const itemOutcomes = useRef(new Map<string, number>([]));
-  const qtiItem = useRef();
+  const qtiItem = useRef<typeof QtiItem>();
 
   useEffect(() => {
+    if (items.length == 0) return;
     const fetchItem = async () => {
       const xmlFetch = await fetch(
         `${server}${pkg}/items/${items[itemIndex]?.href}`
@@ -48,7 +50,7 @@ export const Player = ({
       ]);
   };
   const onNext = () => {
-    (qtiItem.current! as typeof QtiItem).processResponse();
+    qtiItem.current?.processResponse();
     itemIndex < items.length - 1 && setItemIndex(itemIndex + 1);
   };
 
@@ -56,10 +58,10 @@ export const Player = ({
     <div className="w-screen h-screen px-8 bg-gray-100 rounded-2xl flex flex-col items-center justify-center">
       <QtiItem
         className="w-full h-[480px] bg-white shadow p-4"
-        responses={itemId && itemResponses.current.get(itemId)}
-        qtiinteractionchanged={({ detail }: { detail: any }) =>
+        responses={itemResponses.current.get(itemId!)}
+        qtiinteractionchanged={({ detail }: { detail: any }) => {
           storeResponse(detail.item, detail.response, detail.responseIdentifier)
-        }
+        }}
         qtioutcomechanged={(e: any) => {
           itemOutcomes.current.set(items[itemIndex].identifier, e.detail.value);
         }}
@@ -68,11 +70,10 @@ export const Player = ({
           setItemId(e.detail.identifier);
         }}
         xml={itemXML}
-      />
-
+      ></QtiItem>
       <div className="flex justify-between items-center w-full py-2">
         <button
-          className="bg-blue-500 text-white rounded px-3 pb-1 rounded text-3xl py-0"
+          className="bg-blue-500 text-white rounded px-3 pb-1 text-3xl py-0"
           onClick={() => itemIndex > 0 && setItemIndex(itemIndex - 1)}
         >
           ‹
@@ -89,15 +90,17 @@ export const Player = ({
             {items.map((item, i) => (
               <div
                 key={item.identifier}
-                className="w-4 h-4 rounded-full border-2 border-blue-400"
-              >
-                {itemOutcomes.current.get(items[i].identifier)}
+                className={`w-4 h-4 rounded-full border-2 border-blue-400 
+                  ${itemOutcomes.current.get(items[i].identifier) == 0 ? 'bg-red-500' : ''}
+                  ${itemOutcomes.current.get(items[i].identifier) == 1 ? 'bg-green-500' : ''}
+                `}
+              > 
               </div>
             ))}
           </div>
         </div>
         <button
-          className="bg-blue-500 text-white rounded px-3 pb-1 rounded text-3xl py-0"
+          className="bg-blue-500 text-white rounded px-3 pb-1 text-3xl py-0"
           onClick={onNext}
         >
           ›
