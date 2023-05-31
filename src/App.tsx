@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { Player } from "./Player";
+import { useEffect, useState } from 'react';
+import { Player } from './Player';
 import * as cheerio from 'cheerio';
 
 export const App = () => {
-  const [items, setItems] = useState<{ href: string; identifier: string }[]>([]); // array of item identifiers
+  const [items, setItems] = useState<{ href: string; identifier: string }[]>(
+    []
+  ); // array of item identifiers
 
-  const assets='/assets'
-  const pkg='items'
+  const assets = '/assets';
+  const pkg = 'qti3-items';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,13 +25,10 @@ export const App = () => {
         resources.push({ identifier, href });
       });
 
-      setItems(resources)
-
-    }
+      setItems(resources);
+    };
     fetchData().catch(console.error);
   }, []);
 
-  return (<Player items={items} pkg={pkg} assets={assets}></Player>)
-}
-
-
+  return <Player items={items} pkg={pkg} assets={assets}></Player>;
+};
