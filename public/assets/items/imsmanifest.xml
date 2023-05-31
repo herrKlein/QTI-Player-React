@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest
+    xmlns="http://www.imsglobal.org/xsd/qti/qtiv3p0/imscp_v1p1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    identifier="MANIFEST-85D76736-6D19-9DC0-7C0B-57C31A9FD391"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/qti/qtiv3p0/imscp_v1p1 https://purl.imsglobal.org/spec/qti/v3p0/schema/xsd/imsqtiv3p0_imscpv1p2_v1p0.xsd">
+    <metadata>
+        <schema>QTI Package</schema>
+        <schemaversion>3.0.0</schemaversion>
+    </metadata>
+    <organizations />
+    <resources>
+        <resource type="imsqti_item_xmlv3p0" href="G6.BR1_3.xml" identifier="ITM-G6_BR1_3"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="M6.LO6_3.xml" identifier="ITM-M6_LO6_3"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="G6HG5e.xml" identifier="ITM-G6HG5e"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="M6.LO6_6_n.xml" identifier="ITM-M6_LO6_6_n"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="G6.BR1_4n.xml" identifier="ITM-G6_BR1_4n"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="VH6.VH3_4n.xml" identifier="ITM-VH6_VH3_4n"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="M6.LO6_1.xml" identifier="ITM-M6_LO6_1"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="M6.LO6_7_n.xml" identifier="ITM-M6_LO6_7_n"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="G6HG5d.xml" identifier="ITM-G6HG5d"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="M6.LO6_5.xml" identifier="ITM-M6_LO6_5"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="G6HG5f.xml" identifier="ITM-G6HG5f"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="M6LO6c.xml" identifier="ITM-M6LO6c"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="VH6.VH3_7nn.xml" identifier="ITM-VH6_VH3_7nn"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="M6LO6f.xml" identifier="ITM-M6LO6f"></resource>
+        <resource type="imsqti_item_xmlv3p0" href="VH6.VH3_8.xml" identifier="ITM-VH6_VH3_8"></resource>
+    </resources>
+</manifest>
