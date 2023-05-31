@@ -5,9 +5,12 @@ import * as cheerio from 'cheerio';
 export const App = () => {
   const [items, setItems] = useState<{ href: string; identifier: string }[]>([]); // array of item identifiers
 
+  const assets='/assets'
+  const pkg='items'
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch('/assets/items/imsmanifest.xml');
+      const data = await fetch(`${assets}/${pkg}/imsmanifest.xml`);
       const xml = await data.text();
 
       const $ = cheerio.load(xml);
@@ -26,7 +29,7 @@ export const App = () => {
     fetchData().catch(console.error);
   }, []);
 
-  return (<Player items={items}></Player>)
+  return (<Player items={items} pkg={pkg} assets={assets}></Player>)
 }
 
 

@@ -4,12 +4,11 @@ import { qtiTransform } from '@citolab/qti-components/qti-transform';
 import { type ResponseInteraction } from '@citolab/qti-components';
 
 export const Player = ({
-  items,
+  items, assets, pkg
 }: {
-  items: { href: string; identifier: string }[];
+  items: { href: string; identifier: string }[], assets: string, pkg:string
 }) => {
-  const server = '/';
-  const pkg = 'assets';
+  const server = `${assets}`;
   const [itemIndex, setItemIndex] = useState<number>(0); // the index of the current item
   const [itemXML, setItemXML] = useState<string>(''); // the xml of the current item
   const [itemId, setItemId] = useState<string | undefined>(undefined); // the identifier set by the connected, triggers setting the response
@@ -21,12 +20,12 @@ export const Player = ({
     if (items.length == 0) return;
     const fetchItem = async () => {
       const xmlFetch = await fetch(
-        `${server}${pkg}/items/${items[itemIndex]?.href}`
+        `${server}/${pkg}/${items[itemIndex]?.href}`
       );
       const xmlString = await xmlFetch.text();
       const xml = qtiTransform(xmlString)
-        .assetsLocation(`${server}${pkg}/items/`, ['src', 'href', 'data'])
-        .pciHooks(`${server}${pkg}/items/`)
+        .assetsLocation(`${server}/${pkg}/`, ['src', 'href', 'data'])
+        .pciHooks(`${server}/${pkg}/`)
         .xml();
       setItemXML(xml);
     };
