@@ -41,7 +41,7 @@ export const App = () => {
     <>
       <div className="fixed left-3 top-3">
         <select
-          className="block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="block w-full mt-1 px-2 py-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           onChange={handleDropdownChange}
         >
           <option value="items">Custom</option>
