@@ -8,7 +8,14 @@ export const App = () => {
   ); // array of item identifiers
 
   const assets = '/assets';
-  const pkg = 'qti3-items';
+  const [pkg, setPkg] = useState('items');
+
+  const handleDropdownChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedValue = event.target.value;
+    setPkg(selectedValue);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +35,20 @@ export const App = () => {
       setItems(resources);
     };
     fetchData().catch(console.error);
-  }, []);
+  }, [pkg]);
 
-  return <Player items={items} pkg={pkg} assets={assets}></Player>;
+  return (
+    <>
+      <div className="fixed left-3 top-3">
+        <select
+          className="block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          onChange={handleDropdownChange}
+        >
+          <option value="items">Custom</option>
+          <option value="qti3-items">QTI3</option>
+        </select>
+      </div>
+      <Player items={items} pkg={pkg} assets={assets}></Player>
+    </>
+  );
 };

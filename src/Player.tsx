@@ -30,7 +30,7 @@ export const Player = ({
       setItemXML(xml);
     };
     fetchItem().catch(console.error);
-  }, [items, itemIndex]);
+  }, [items, itemIndex, pkg]);
 
   const storeResponse = (
     itemId: string,
