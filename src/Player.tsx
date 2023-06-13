@@ -26,6 +26,7 @@ export const Player = ({
       const xml = qtiTransform(xmlString)
         .assetsLocation(`${server}/${pkg}/`, ['src', 'href', 'data'])
         .pciHooks(`${server}/${pkg}/`)
+        .removeNamesSpaces()
         .xml();
       setItemXML(xml);
     };
