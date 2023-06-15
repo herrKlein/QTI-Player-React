@@ -14,7 +14,7 @@
 	<qti-item-body>
 		<qti-select-point-interaction response-identifier="RESPONSE" max-choices="1">
 			<qti-prompt>Mark Edinburgh on this map of the United Kingdom.</qti-prompt>
-			<object type="image/png" width="196" height="280" data="images/uk.png">UK Map</object>
+			<img type="image/png" width="206" height="280" src="images/ukair.png" alt="UK Map" />
 		</qti-select-point-interaction>
 	</qti-item-body>
 	<qti-response-processing template="https://www.imsglobal.org/question/qti_v3p0/rptemplates/map_response_point.xml"/>
