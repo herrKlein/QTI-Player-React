@@ -24,7 +24,7 @@
 			and one between London and Manchester.</p>
 		<qti-graphic-associate-interaction response-identifier="RESPONSE" max-associations="3">
 			<qti-prompt>Mark the airline's new routes on the airport map:</qti-prompt>
-			<object type="image/png" width="206" height="280" data="images/ukair.png">UK Map</object>
+			<img type="image/png" width="206" height="280" src="images/ukair.png" alt="UK Map" />
 			<qti-associable-hotspot shape="circle" coords="77,115,8" identifier="A" match-max="3"/>
 			<qti-associable-hotspot shape="circle" coords="118,184,8" identifier="B" match-max="3"/>
 			<qti-associable-hotspot shape="circle" coords="150,235,8" identifier="C" match-max="3"/>

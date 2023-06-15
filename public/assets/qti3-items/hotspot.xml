@@ -11,7 +11,7 @@
 			in the United Kingdom: London, Manchester, Edinburgh and Glasgow.</p>
 		<qti-hotspot-interaction response-identifier="RESPONSE" max-choices="1">
 			<qti-prompt>Which one is Glasgow?</qti-prompt>
-			<object type="image/png" width="206" height="280" data="images/ukair.png">UK Map</object>
+			<img type="image/png" width="206" height="280" src="images/ukair.png" alt="UK Map" />
 			<qti-hotspot-choice shape="circle" coords="77,115,8" identifier="A"/>
 			<qti-hotspot-choice shape="circle" coords="118,184,8" identifier="B"/>
 			<qti-hotspot-choice shape="circle" coords="150,235,8" identifier="C"/>

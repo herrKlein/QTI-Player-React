@@ -12,7 +12,7 @@
 	<qti-item-body>
 		<qti-choice-interaction response-identifier="RESPONSE" shuffle="true" max-choices="1">
 			<qti-prompt>What colour is the rectangle below
-				<object data="images/rectangle.svg" type="image/svg+xml" width="250" height="250"/> ?</qti-prompt>
+				<img src="images/rectangle.svg" width="250" height="250"/>?</qti-prompt>
 			<qti-simple-choice identifier="E">Red</qti-simple-choice>
 			<qti-simple-choice identifier="G">Blue</qti-simple-choice>
 			<qti-simple-choice identifier="H">Green</qti-simple-choice>

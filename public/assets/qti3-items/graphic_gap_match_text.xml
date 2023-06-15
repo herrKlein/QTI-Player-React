@@ -21,7 +21,7 @@
     <qti-graphic-gap-match-interaction response-identifier="RESPONSE">
       <qti-prompt>Some of the labels on the following diagram are missing: can you identify the
         correct three-letter codes for the unlabelled airports?</qti-prompt>
-      <object type="image/png" data="images/ukairtags.png" width="206" height="280"/>
+			<img type="image/png" width="206" height="280" src="images/ukairtags.png" alt="UK Map" />
       <qti-gap-text identifier="CBG" match-max="1">
         <strong>CBG</strong>
       </qti-gap-text>

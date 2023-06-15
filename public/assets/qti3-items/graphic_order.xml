@@ -19,7 +19,7 @@
 			to Glasgow are not very reliable from there.</p>
 		<qti-graphic-order-interaction response-identifier="RESPONSE">
 			<qti-prompt>Mark the airports shown on the map according to Lorna's preferences.</qti-prompt>
-			<object type="image/png" width="206" height="280" data="images/ukair.png">UK Map</object>
+			<img type="image/png" width="206" height="280" src="images/ukair.png" alt="UK Map" />
 			<qti-hotspot-choice shape="circle" coords="77,115,8" identifier="A"/>
 			<qti-hotspot-choice shape="circle" coords="118,184,8" identifier="B"/>
 			<qti-hotspot-choice shape="circle" coords="150,235,8" identifier="C"/>
