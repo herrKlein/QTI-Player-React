@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { QtiItem } from '@citolab/qti-components/react/qti-item';
-import { qtiTransform } from '@citolab/qti-components/qti-transform';
-import { type ResponseInteraction } from '@citolab/qti-components';
+import { QtiAssessmentItem, type ResponseInteraction } from '@citolab/qti-components';
 
 export const Player = ({
   items, assets, pkg
@@ -14,7 +13,7 @@ export const Player = ({
   const [itemId, setItemId] = useState<string | undefined>(undefined); // the identifier set by the connected, triggers setting the response
   const itemResponses = useRef(new Map<string, ResponseInteraction[]>([]));
   const itemOutcomes = useRef(new Map<string, number>([]));
-  const qtiItem = useRef<typeof QtiItem>();
+  const qtiItem = useRef<typeof QtiAssessmentItem>();
 
   useEffect(() => {
     if (items.length == 0) return;
@@ -53,6 +52,7 @@ export const Player = ({
   return (
     <div className="w-screen h-screen px-8 bg-gray-100 rounded-2xl flex flex-col items-center justify-center">
       <QtiItem
+        item-location={`${server}/${pkg}/`}
         className="w-full h-[480px] bg-white shadow p-4"
         responses={itemResponses.current.get(itemId!)}
         qtiinteractionchanged={({ detail }: { detail: any }) => {
@@ -63,7 +63,7 @@ export const Player = ({
         }}
         qtiitemconnected={(e: any) => {
           qtiItem.current = e.target;
-          setItemId(e.detail.identifier);
+          setItemId(e.target.identifier);
         }}
         xml={itemXML}
       ></QtiItem>
