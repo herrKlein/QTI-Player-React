@@ -13,7 +13,7 @@ export const Player = ({
   const [itemId, setItemId] = useState<string | undefined>(undefined); // the identifier set by the connected, triggers setting the response
   const itemResponses = useRef(new Map<string, ResponseInteraction[]>([]));
   const itemOutcomes = useRef(new Map<string, number>([]));
-  const qtiItem = useRef<typeof QtiAssessmentItem>();
+  const qtiAssessmentItem = useRef<QtiAssessmentItem>();
 
   useEffect(() => {
     if (items.length == 0) return;
@@ -45,7 +45,7 @@ export const Player = ({
       ]);
   };
   const onNext = () => {
-    qtiItem.current?.processResponse();
+    qtiAssessmentItem.current?.processResponse();
     itemIndex < items.length - 1 && setItemIndex(itemIndex + 1);
   };
 
@@ -54,16 +54,16 @@ export const Player = ({
       <QtiItem
         item-location={`${server}/${pkg}/`}
         className="w-full h-[480px] bg-white shadow p-4"
-        responses={itemResponses.current.get(itemId!)}
-        qtiinteractionchanged={({ detail }: { detail: any }) => {
+        qti-interaction-changed={({ detail }: { detail: any }) => {
           storeResponse(detail.item, detail.response, detail.responseIdentifier)
         }}
-        qtioutcomechanged={(e: any) => {
+        qti-outcome-changed={(e: any) => {
           itemOutcomes.current.set(items[itemIndex].identifier, e.detail.value);
         }}
-        qtiitemconnected={(e: any) => {
-          qtiItem.current = e.target;
+        qti-item-connected={(e: any) => {
+          qtiAssessmentItem.current = e.target;
           setItemId(e.target.identifier);
+          qtiAssessmentItem.current!.responses = itemResponses.current.get(itemId!)!
         }}
         xml={itemXML}
       ></QtiItem>
