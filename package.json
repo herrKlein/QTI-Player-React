@@ -17,7 +17,10 @@
     "@citolab/qti-components": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "cheerio": "1.0.0-rc.12"
+    "cheerio": "1.0.0-rc.12",
+    "lit": "^2.7.5",
+    "@lit-labs/context": "^0.3.3",
+    "@lit-labs/react": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.6",
