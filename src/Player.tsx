@@ -22,12 +22,8 @@ export const Player = ({
       const xmlFetch = await fetch(
         `${server}/${pkg}/${items[itemIndex]?.href}`
       );
-      const xmlString = await xmlFetch.text();
-      const xml = qtiTransform(xmlString)
-        .assetsLocation(`${server}/${pkg}/`, ['src', 'href', 'data'])
-        .pciHooks(`${server}/${pkg}/`)
-        .removeNamesSpaces()
-        .xml();
+      const xml = await xmlFetch.text();
+      
       setItemXML(xml);
     };
     fetchItem().catch(console.error);

@@ -8,19 +8,16 @@
     ".": "./dist/my-element.es.js"
   },
   "types": "types/my-element.d.ts",
-  "files": [
-    "dist",
-    "types"
-  ],
+  "files": ["dist", "types"],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@citolab/qti-components": "next",
+    "@citolab/qti-components": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "cheerio":"1.0.0-rc.12"
+    "cheerio": "1.0.0-rc.12"
   },
   "devDependencies": {
     "@types/react": "^18.2.6",
