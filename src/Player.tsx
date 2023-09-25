@@ -5,12 +5,11 @@ import { QtiAssessmentItem, type ResponseInteraction } from '@citolab/qti-compon
 export const Player = ({
   items, assets, pkg
 }: {
-  items: { href: string; identifier: string }[], assets: string, pkg:string
+  items: { href: string; identifier: string }[], assets: string, pkg: string
 }) => {
   const server = `${assets}`;
   const [itemIndex, setItemIndex] = useState<number>(0); // the index of the current item
   const [itemXML, setItemXML] = useState<string>(''); // the xml of the current item
-  const [itemId, setItemId] = useState<string | undefined>(undefined); // the identifier set by the connected, triggers setting the response
   const itemResponses = useRef(new Map<string, ResponseInteraction[]>([]));
   const itemOutcomes = useRef(new Map<string, number>([]));
   const qtiAssessmentItem = useRef<QtiAssessmentItem>();
@@ -22,7 +21,7 @@ export const Player = ({
         `${server}/${pkg}/${items[itemIndex]?.href}`
       );
       const xml = await xmlFetch.text();
-      
+
       setItemXML(xml);
     };
     fetchItem().catch(console.error);
@@ -60,13 +59,12 @@ export const Player = ({
         qti-outcome-changed={(e: any) => {
           itemOutcomes.current.set(items[itemIndex].identifier, e.detail.value);
         }}
-        qti-item-connected={(e: any) => {
-          qtiAssessmentItem.current = e.target;
-          setItemId(e.target.identifier);
-          qtiAssessmentItem.current!.responses = itemResponses.current.get(itemId!)!
+        qti-item-connected={({ detail: item }) => {
+          qtiAssessmentItem.current = item;
+          item.responses = itemResponses.current.get(item.identifier)!
         }}
         xml={itemXML}
-      ></QtiItem>
+      />
       <div className="flex justify-between items-center w-full py-2">
         <button
           className="bg-blue-500 text-white rounded px-3 pb-1 text-3xl py-0"
@@ -90,7 +88,7 @@ export const Player = ({
                   ${itemOutcomes.current.get(items[i].identifier) == 0 ? 'bg-red-500' : ''}
                   ${itemOutcomes.current.get(items[i].identifier) == 1 ? 'bg-green-500' : ''}
                 `}
-              > 
+              >
               </div>
             ))}
           </div>
@@ -102,7 +100,6 @@ export const Player = ({
           ›
         </button>
       </div>
-      <h1>{itemId}</h1>
     </div>
   );
 };

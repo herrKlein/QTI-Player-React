@@ -4,7 +4,7 @@ import { App } from './App.tsx';
 import './style.css'
 
 // QTI: add to use
-import '@citolab/qti-components';
+import '@citolab/qti-components/qti-components';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
